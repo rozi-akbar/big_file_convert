@@ -2,6 +2,9 @@
 import mariadb
 import sys
 import jsonlines
+import time
+
+start = time.time()
 
 # Connect to MariaDB Platform
 try:
@@ -18,7 +21,7 @@ except mariadb.Error as e:
 
 # Get Cursor
 cur = conn.cursor()
-
+print("Starting...")
 with jsonlines.open('../Data.json') as reader:
     for product in reader:
         try: 
@@ -31,3 +34,7 @@ with jsonlines.open('../Data.json') as reader:
             # print(f"First name: {_id}, Last name: {Code}")
         except mariadb.Error as e: 
             print(f"Error: {e}")
+
+end = time.time()
+print("Execution Time:")
+print(end - start)
