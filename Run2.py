@@ -44,13 +44,13 @@ while True:
 # Insert Data to Database
 
 for product in jsons:
-    # try: 
+    try: 
         # cur.execute("INSERT INTO employees (first_name,last_name) VALUES (?, ?)", ("Maria","DB"))
-        print(product['_id']['$numberLong'],"/",product['Code'],"/",product['SKU'],"/",product['BatchNumber'],"/",product['Hash'],"/",product['SortenUrl'],"/",product['UploadId'],"/",product['IsActived'],"/",product['CreatedDate']['$date'])
-        # cur.execute("INSERT INTO rozi_convert.products (_id, Code, SKU, BatchNumber, Hash, SortenUrl, UploadId, IsActivated, CreatedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (product['_id']['$numberLong'], product['Code'], product['SKU'], product['BatchNumber'], product['Hash'], product['SortenUrl'], product['UploadId'], product['IsActived'], product['CreatedDate']['$date']))
-        # conn.commit()
+        # print(product['_id']['$numberLong'],"/",product['Code'],"/",product['SKU'],"/",product['BatchNumber'],"/",product['Hash'],"/",product['SortenUrl'],"/",product['UploadId'],"/",product['IsActived'],"/",product['CreatedDate']['$date'])
+        cur.execute("INSERT INTO rozi_convert.products (_id, Code, SKU, BatchNumber, Hash, SortenUrl, UploadId, IsActivated, CreatedDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (product['_id']['$numberLong'], product['Code'], product['SKU'], product['BatchNumber'], product['Hash'], product['SortenUrl'], product['UploadId'], product['IsActived'], product['CreatedDate']['$date']))
+        conn.commit()
         # cur.execute("SELECT _id, Code FROM products")
         # for _id, Code in cur: 
         # print(f"First name: {_id}, Last name: {Code}")
-    # except mariadb.Error as e: 
-    #     print(f"Error: {e}")
+    except mariadb.Error as e: 
+        print(f"Error: {e}")
